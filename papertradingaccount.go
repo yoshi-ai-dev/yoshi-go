@@ -74,20 +74,22 @@ func (r *PaperTradingAccountNewResponse) UnmarshalJSON(data []byte) error {
 }
 
 type PaperTradingAccountNewResponseData struct {
-	ActionID    string `json:"action_id" api:"required" format:"uuid"`
-	ApprovalURL string `json:"approval_url" api:"required"`
-	Description string `json:"description" api:"required"`
-	Status      string `json:"status" api:"required"`
-	ThreadID    string `json:"thread_id" api:"required" format:"uuid"`
+	ActionID          string `json:"action_id" api:"required" format:"uuid"`
+	ApprovalStatusURL string `json:"approval_status_url" api:"required"`
+	ApprovalURL       string `json:"approval_url" api:"required"`
+	Description       string `json:"description" api:"required"`
+	Status            string `json:"status" api:"required"`
+	ThreadID          string `json:"thread_id" api:"required" format:"uuid"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ActionID    respjson.Field
-		ApprovalURL respjson.Field
-		Description respjson.Field
-		Status      respjson.Field
-		ThreadID    respjson.Field
-		ExtraFields map[string]respjson.Field
-		raw         string
+		ActionID          respjson.Field
+		ApprovalStatusURL respjson.Field
+		ApprovalURL       respjson.Field
+		Description       respjson.Field
+		Status            respjson.Field
+		ThreadID          respjson.Field
+		ExtraFields       map[string]respjson.Field
+		raw               string
 	} `json:"-"`
 }
 

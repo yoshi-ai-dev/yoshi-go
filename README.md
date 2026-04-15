@@ -57,7 +57,7 @@ func main() {
 		option.WithAPIKey("My API Key"), // defaults to os.LookupEnv("YOSHI_API_KEY")
 		option.WithEnvironmentStaging(), // defaults to option.WithEnvironmentProduction()
 	)
-	accounts, err := client.Accounts.List(context.TODO())
+	accounts, err := client.Accounts.List(context.TODO(), yoshi.AccountListParams{})
 	if err != nil {
 		panic(err.Error())
 	}
@@ -323,7 +323,7 @@ When the API returns a non-success status code, we return an error with type
 To handle errors, we recommend that you use the `errors.As` pattern:
 
 ```go
-_, err := client.Accounts.List(context.TODO())
+_, err := client.Accounts.List(context.TODO(), yoshi.AccountListParams{})
 if err != nil {
 	var apierr *yoshi.Error
 	if errors.As(err, &apierr) {
@@ -350,6 +350,7 @@ ctx, cancel := context.WithTimeout(context.Background(), 5*time.Minute)
 defer cancel()
 client.Accounts.List(
 	ctx,
+	yoshi.AccountListParams{},
 	// This sets the per-retry timeout
 	option.WithRequestTimeout(20*time.Second),
 )
@@ -383,7 +384,11 @@ client := yoshi.NewClient(
 )
 
 // Override per-request:
-client.Accounts.List(context.TODO(), option.WithMaxRetries(5))
+client.Accounts.List(
+	context.TODO(),
+	yoshi.AccountListParams{},
+	option.WithMaxRetries(5),
+)
 ```
 
 ### Accessing raw response data (e.g. response headers)
@@ -394,7 +399,11 @@ you need to examine response headers, status codes, or other details.
 ```go
 // Create a variable to store the HTTP response
 var response *http.Response
-accounts, err := client.Accounts.List(context.TODO(), option.WithResponseInto(&response))
+accounts, err := client.Accounts.List(
+	context.TODO(),
+	yoshi.AccountListParams{},
+	option.WithResponseInto(&response),
+)
 if err != nil {
 	// handle error
 }

@@ -13,7 +13,7 @@ import (
 	"github.com/yoshi-ai-dev/yoshi-go/option"
 )
 
-func TestAccountListWithOptionalParams(t *testing.T) {
+func TestBenefitExpiringWithOptionalParams(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
@@ -26,9 +26,32 @@ func TestAccountListWithOptionalParams(t *testing.T) {
 		option.WithBaseURL(baseURL),
 		option.WithAPIKey("My API Key"),
 	)
-	_, err := client.Accounts.List(context.TODO(), yoshi.AccountListParams{
-		Hidden: yoshi.AccountListParamsHiddenTrue,
+	_, err := client.Benefits.Expiring(context.TODO(), yoshi.BenefitExpiringParams{
+		Days: yoshi.Int(1),
 	})
+	if err != nil {
+		var apierr *yoshi.Error
+		if errors.As(err, &apierr) {
+			t.Log(string(apierr.DumpRequest(true)))
+		}
+		t.Fatalf("err should be nil: %s", err.Error())
+	}
+}
+
+func TestBenefitSummary(t *testing.T) {
+	t.Skip("Mock server tests are disabled")
+	baseURL := "http://localhost:4010"
+	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
+		baseURL = envURL
+	}
+	if !testutil.CheckTestServer(t, baseURL) {
+		return
+	}
+	client := yoshi.NewClient(
+		option.WithBaseURL(baseURL),
+		option.WithAPIKey("My API Key"),
+	)
+	_, err := client.Benefits.Summary(context.TODO())
 	if err != nil {
 		var apierr *yoshi.Error
 		if errors.As(err, &apierr) {

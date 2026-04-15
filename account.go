@@ -5,10 +5,12 @@ package yoshi
 import (
 	"context"
 	"net/http"
+	"net/url"
 	"slices"
 	"time"
 
 	"github.com/yoshi-ai-dev/yoshi-go/internal/apijson"
+	"github.com/yoshi-ai-dev/yoshi-go/internal/apiquery"
 	"github.com/yoshi-ai-dev/yoshi-go/internal/requestconfig"
 	"github.com/yoshi-ai-dev/yoshi-go/option"
 	"github.com/yoshi-ai-dev/yoshi-go/packages/respjson"
@@ -36,10 +38,10 @@ func NewAccountService(opts ...option.RequestOption) (r AccountService) {
 }
 
 // List linked financial accounts with current balances and metadata.
-func (r *AccountService) List(ctx context.Context, opts ...option.RequestOption) (res *AccountListResponse, err error) {
+func (r *AccountService) List(ctx context.Context, query AccountListParams, opts ...option.RequestOption) (res *AccountListResponse, err error) {
 	opts = slices.Concat(r.options, opts)
 	path := "accounts"
-	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return res, err
 }
 
@@ -142,3 +144,24 @@ func (r AccountListResponseMeta) RawJSON() string { return r.JSON.raw }
 func (r *AccountListResponseMeta) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
+
+type AccountListParams struct {
+	// Any of "true", "false".
+	Hidden AccountListParamsHidden `query:"hidden,omitzero" json:"-"`
+	paramObj
+}
+
+// URLQuery serializes [AccountListParams]'s query parameters as `url.Values`.
+func (r AccountListParams) URLQuery() (v url.Values, err error) {
+	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
+		ArrayFormat:  apiquery.ArrayQueryFormatComma,
+		NestedFormat: apiquery.NestedQueryFormatBrackets,
+	})
+}
+
+type AccountListParamsHidden string
+
+const (
+	AccountListParamsHiddenTrue  AccountListParamsHidden = "true"
+	AccountListParamsHiddenFalse AccountListParamsHidden = "false"
+)
