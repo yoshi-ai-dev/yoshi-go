@@ -64,6 +64,8 @@ type TransactionListResponse struct {
 	AccountID           string  `json:"account_id" api:"required"`
 	AccountName         string  `json:"account_name" api:"required"`
 	Amount              float64 `json:"amount" api:"required"`
+	AmountAbsolute      float64 `json:"amount_absolute" api:"required"`
+	CashFlowDirection   string  `json:"cash_flow_direction" api:"required"`
 	CategoryLabel       string  `json:"category_label" api:"required"`
 	CategoryTier1       string  `json:"category_tier1" api:"required"`
 	CategoryTier2       string  `json:"category_tier2" api:"required"`
@@ -71,13 +73,17 @@ type TransactionListResponse struct {
 	CounterpartyName    string  `json:"counterparty_name" api:"required"`
 	DateAuthorized      string  `json:"date_authorized" api:"required"`
 	DatePosted          string  `json:"date_posted" api:"required"`
+	IsInternalTransfer  bool    `json:"is_internal_transfer" api:"required"`
 	OriginalDescription string  `json:"original_description" api:"required"`
+	Pending             bool    `json:"pending" api:"required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		ID                  respjson.Field
 		AccountID           respjson.Field
 		AccountName         respjson.Field
 		Amount              respjson.Field
+		AmountAbsolute      respjson.Field
+		CashFlowDirection   respjson.Field
 		CategoryLabel       respjson.Field
 		CategoryTier1       respjson.Field
 		CategoryTier2       respjson.Field
@@ -85,7 +91,9 @@ type TransactionListResponse struct {
 		CounterpartyName    respjson.Field
 		DateAuthorized      respjson.Field
 		DatePosted          respjson.Field
+		IsInternalTransfer  respjson.Field
 		OriginalDescription respjson.Field
+		Pending             respjson.Field
 		ExtraFields         map[string]respjson.Field
 		raw                 string
 	} `json:"-"`
