@@ -36,7 +36,7 @@ func TestMeGet(t *testing.T) {
 	}
 }
 
-func TestMeSummaryWithOptionalParams(t *testing.T) {
+func TestMeSummary(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
@@ -49,9 +49,7 @@ func TestMeSummaryWithOptionalParams(t *testing.T) {
 		option.WithBaseURL(baseURL),
 		option.WithAPIKey("My API Key"),
 	)
-	_, err := client.Me.Summary(context.TODO(), yoshi.MeSummaryParams{
-		Hidden: yoshi.MeSummaryParamsHiddenTrue,
-	})
+	_, err := client.Me.Summary(context.TODO())
 	if err != nil {
 		var apierr *yoshi.Error
 		if errors.As(err, &apierr) {
