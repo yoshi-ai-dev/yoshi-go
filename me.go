@@ -5,12 +5,10 @@ package yoshi
 import (
 	"context"
 	"net/http"
-	"net/url"
 	"slices"
 	"time"
 
 	"github.com/yoshi-ai-dev/yoshi-go/internal/apijson"
-	"github.com/yoshi-ai-dev/yoshi-go/internal/apiquery"
 	"github.com/yoshi-ai-dev/yoshi-go/internal/requestconfig"
 	"github.com/yoshi-ai-dev/yoshi-go/option"
 	"github.com/yoshi-ai-dev/yoshi-go/packages/respjson"
@@ -44,10 +42,10 @@ func (r *MeService) Get(ctx context.Context, opts ...option.RequestOption) (res 
 }
 
 // Get a comprehensive financial summary including accounts, scores, and goals.
-func (r *MeService) Summary(ctx context.Context, query MeSummaryParams, opts ...option.RequestOption) (res *MeSummaryResponse, err error) {
+func (r *MeService) Summary(ctx context.Context, opts ...option.RequestOption) (res *MeSummaryResponse, err error) {
 	opts = slices.Concat(r.options, opts)
 	path := "me/summary"
-	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return res, err
 }
 
@@ -270,24 +268,3 @@ func (r MeSummaryResponseMeta) RawJSON() string { return r.JSON.raw }
 func (r *MeSummaryResponseMeta) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
-
-type MeSummaryParams struct {
-	// Any of "true", "false".
-	Hidden MeSummaryParamsHidden `query:"hidden,omitzero" json:"-"`
-	paramObj
-}
-
-// URLQuery serializes [MeSummaryParams]'s query parameters as `url.Values`.
-func (r MeSummaryParams) URLQuery() (v url.Values, err error) {
-	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
-		ArrayFormat:  apiquery.ArrayQueryFormatComma,
-		NestedFormat: apiquery.NestedQueryFormatBrackets,
-	})
-}
-
-type MeSummaryParamsHidden string
-
-const (
-	MeSummaryParamsHiddenTrue  MeSummaryParamsHidden = "true"
-	MeSummaryParamsHiddenFalse MeSummaryParamsHidden = "false"
-)

@@ -6,7 +6,7 @@ Response Types:
 
 Methods:
 
-- <code title="get /accounts">client.Accounts.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#AccountService.List">List</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, query <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#AccountListParams">AccountListParams</a>) (\*<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#AccountListResponse">AccountListResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+- <code title="get /accounts">client.Accounts.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#AccountService.List">List</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>) (\*<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#AccountListResponse">AccountListResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
 
 ## BalanceSeries
 
@@ -60,16 +60,6 @@ Methods:
 
 # Benefits
 
-Response Types:
-
-- <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#BenefitExpiringResponse">BenefitExpiringResponse</a>
-- <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#BenefitSummaryResponse">BenefitSummaryResponse</a>
-
-Methods:
-
-- <code title="get /benefits/expiring">client.Benefits.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#BenefitService.Expiring">Expiring</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, query <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#BenefitExpiringParams">BenefitExpiringParams</a>) (\*<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#BenefitExpiringResponse">BenefitExpiringResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
-- <code title="get /benefits/summary">client.Benefits.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#BenefitService.Summary">Summary</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>) (\*<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#BenefitSummaryResponse">BenefitSummaryResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
-
 # Investments
 
 Response Types:
@@ -100,7 +90,7 @@ Response Types:
 Methods:
 
 - <code title="get /me">client.Me.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#MeService.Get">Get</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>) (\*<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#MeGetResponse">MeGetResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
-- <code title="get /me/summary">client.Me.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#MeService.Summary">Summary</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, query <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#MeSummaryParams">MeSummaryParams</a>) (\*<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#MeSummaryResponse">MeSummaryResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+- <code title="get /me/summary">client.Me.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#MeService.Summary">Summary</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>) (\*<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#MeSummaryResponse">MeSummaryResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
 
 # PaperTrading
 

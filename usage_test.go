@@ -25,7 +25,7 @@ func TestUsage(t *testing.T) {
 		option.WithBaseURL(baseURL),
 		option.WithAPIKey("My API Key"),
 	)
-	accounts, err := client.Accounts.List(context.TODO(), yoshi.AccountListParams{})
+	accounts, err := client.Accounts.List(context.TODO())
 	if err != nil {
 		t.Fatalf("err should be nil: %s", err.Error())
 	}
