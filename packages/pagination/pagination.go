@@ -3,6 +3,7 @@
 package pagination
 
 import (
+	"iter"
 	"net/http"
 
 	"github.com/yoshi-ai-dev/yoshi-go/internal/apijson"
@@ -124,4 +125,14 @@ func (r *CursorPageAutoPager[T]) Err() error {
 
 func (r *CursorPageAutoPager[T]) Index() int {
 	return r.run
+}
+
+func (r *CursorPageAutoPager[T]) All() iter.Seq[T] {
+	return func(yield func(T) bool) {
+		for r.Next() {
+			if !yield(r.Current()) {
+				break
+			}
+		}
+	}
 }

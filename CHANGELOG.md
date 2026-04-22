@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.0 (2026-04-22)
+
+Full Changelog: [v0.1.0...v0.2.0](https://github.com/yoshi-ai-dev/yoshi-go/compare/v0.1.0...v0.2.0)
+
+### Features
+
+* **api:** api update ([47c2d71](https://github.com/yoshi-ai-dev/yoshi-go/commit/47c2d710c0674c58377320145a767b17d299a232))
+
 ## 0.1.0 (2026-04-15)
 
 Full Changelog: [v0.0.1...v0.1.0](https://github.com/yoshi-ai-dev/yoshi-go/compare/v0.0.1...v0.1.0)
