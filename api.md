@@ -138,6 +138,60 @@ Methods:
 - <code title="post /paper-trading/accounts/{accountId}/trades">client.PaperTrading.Accounts.Trades.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#PaperTradingAccountTradeService.New">New</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, accountID <a href="https://pkg.go.dev/builtin#string">string</a>, body <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#PaperTradingAccountTradeNewParams">PaperTradingAccountTradeNewParams</a>) (\*<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#PaperTradingAccountTradeNewResponse">PaperTradingAccountTradeNewResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
 - <code title="get /paper-trading/accounts/{accountId}/trades">client.PaperTrading.Accounts.Trades.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#PaperTradingAccountTradeService.List">List</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, accountID <a href="https://pkg.go.dev/builtin#string">string</a>, query <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#PaperTradingAccountTradeListParams">PaperTradingAccountTradeListParams</a>) (\*<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go/packages/pagination">pagination</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go/packages/pagination#CursorPage">CursorPage</a>[<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#PaperTradingAccountTradeListResponse">PaperTradingAccountTradeListResponse</a>], <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
 
+# Webhooks
+
+## Endpoints
+
+Response Types:
+
+- <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#WebhookEndpointNewResponse">WebhookEndpointNewResponse</a>
+- <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#WebhookEndpointGetResponse">WebhookEndpointGetResponse</a>
+- <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#WebhookEndpointUpdateResponse">WebhookEndpointUpdateResponse</a>
+- <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#WebhookEndpointListResponse">WebhookEndpointListResponse</a>
+- <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#WebhookEndpointDeleteResponse">WebhookEndpointDeleteResponse</a>
+- <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#WebhookEndpointRotateResponse">WebhookEndpointRotateResponse</a>
+- <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#WebhookEndpointTestResponse">WebhookEndpointTestResponse</a>
+
+Methods:
+
+- <code title="post /webhooks/endpoints">client.Webhooks.Endpoints.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#WebhookEndpointService.New">New</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, body <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#WebhookEndpointNewParams">WebhookEndpointNewParams</a>) (\*<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#WebhookEndpointNewResponse">WebhookEndpointNewResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+- <code title="get /webhooks/endpoints/{id}">client.Webhooks.Endpoints.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#WebhookEndpointService.Get">Get</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, id <a href="https://pkg.go.dev/builtin#string">string</a>) (\*<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#WebhookEndpointGetResponse">WebhookEndpointGetResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+- <code title="put /webhooks/endpoints/{id}">client.Webhooks.Endpoints.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#WebhookEndpointService.Update">Update</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, id <a href="https://pkg.go.dev/builtin#string">string</a>, body <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#WebhookEndpointUpdateParams">WebhookEndpointUpdateParams</a>) (\*<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#WebhookEndpointUpdateResponse">WebhookEndpointUpdateResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+- <code title="get /webhooks/endpoints">client.Webhooks.Endpoints.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#WebhookEndpointService.List">List</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>) (\*<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#WebhookEndpointListResponse">WebhookEndpointListResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+- <code title="delete /webhooks/endpoints/{id}">client.Webhooks.Endpoints.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#WebhookEndpointService.Delete">Delete</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, id <a href="https://pkg.go.dev/builtin#string">string</a>) (\*<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#WebhookEndpointDeleteResponse">WebhookEndpointDeleteResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+- <code title="post /webhooks/endpoints/{id}/rotate">client.Webhooks.Endpoints.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#WebhookEndpointService.Rotate">Rotate</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, id <a href="https://pkg.go.dev/builtin#string">string</a>) (\*<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#WebhookEndpointRotateResponse">WebhookEndpointRotateResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+- <code title="post /webhooks/endpoints/{id}/test">client.Webhooks.Endpoints.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#WebhookEndpointService.Test">Test</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, id <a href="https://pkg.go.dev/builtin#string">string</a>) (\*<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#WebhookEndpointTestResponse">WebhookEndpointTestResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+
+## Deliveries
+
+Response Types:
+
+- <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#WebhookDeliveryListResponse">WebhookDeliveryListResponse</a>
+
+Methods:
+
+- <code title="get /webhooks/deliveries">client.Webhooks.Deliveries.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#WebhookDeliveryService.List">List</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, query <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#WebhookDeliveryListParams">WebhookDeliveryListParams</a>) (\*<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#WebhookDeliveryListResponse">WebhookDeliveryListResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+
+## Events
+
+Response Types:
+
+- <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#WebhookEventListResponse">WebhookEventListResponse</a>
+
+Methods:
+
+- <code title="get /webhooks/events">client.Webhooks.Events.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#WebhookEventService.List">List</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>) (\*<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#WebhookEventListResponse">WebhookEventListResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+
+## Portal
+
+Response Types:
+
+- <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#WebhookPortalGetResponse">WebhookPortalGetResponse</a>
+
+Methods:
+
+- <code title="get /webhooks/portal">client.Webhooks.Portal.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#WebhookPortalService.Get">Get</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>) (\*<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#WebhookPortalGetResponse">WebhookPortalGetResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+
 # Approvals
 
 Response Types:

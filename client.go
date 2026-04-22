@@ -27,6 +27,7 @@ type Client struct {
 	Income       IncomeService
 	Me           MeService
 	PaperTrading PaperTradingService
+	Webhooks     WebhookService
 	Approvals    ApprovalService
 }
 
@@ -62,6 +63,7 @@ func NewClient(opts ...option.RequestOption) (r Client) {
 	r.Income = NewIncomeService(opts...)
 	r.Me = NewMeService(opts...)
 	r.PaperTrading = NewPaperTradingService(opts...)
+	r.Webhooks = NewWebhookService(opts...)
 	r.Approvals = NewApprovalService(opts...)
 
 	return
