@@ -52,7 +52,7 @@ func (r *PaperTradingAccountTradeService) New(ctx context.Context, accountID str
 	return res, err
 }
 
-// List trade history for a paper trading account with cursor-based pagination.
+// List trade history for a Test Drive account with cursor-based pagination.
 func (r *PaperTradingAccountTradeService) List(ctx context.Context, accountID string, query PaperTradingAccountTradeListParams, opts ...option.RequestOption) (res *pagination.CursorPage[PaperTradingAccountTradeListResponse], err error) {
 	var raw *http.Response
 	opts = slices.Concat(r.options, opts)
@@ -74,7 +74,7 @@ func (r *PaperTradingAccountTradeService) List(ctx context.Context, accountID st
 	return res, nil
 }
 
-// List trade history for a paper trading account with cursor-based pagination.
+// List trade history for a Test Drive account with cursor-based pagination.
 func (r *PaperTradingAccountTradeService) ListAutoPaging(ctx context.Context, accountID string, query PaperTradingAccountTradeListParams, opts ...option.RequestOption) *pagination.CursorPageAutoPager[PaperTradingAccountTradeListResponse] {
 	return pagination.NewCursorPageAutoPager(r.List(ctx, accountID, query, opts...))
 }

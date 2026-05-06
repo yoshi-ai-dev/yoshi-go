@@ -13,7 +13,7 @@ import (
 	"github.com/yoshi-ai-dev/yoshi-go/option"
 )
 
-func TestAccountListWithOptionalParams(t *testing.T) {
+func TestCardIdentityHintListWithOptionalParams(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
@@ -26,9 +26,9 @@ func TestAccountListWithOptionalParams(t *testing.T) {
 		option.WithBaseURL(baseURL),
 		option.WithAPIKey("My API Key"),
 	)
-	_, err := client.Accounts.List(context.TODO(), yoshi.AccountListParams{
-		Hidden: yoshi.AccountListParamsHiddenTrue,
-		Status: yoshi.AccountListParamsStatusOpen,
+	_, err := client.CardIdentityHints.List(context.TODO(), yoshi.CardIdentityHintListParams{
+		AccountID: yoshi.String("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),
+		Status:    yoshi.CardIdentityHintListParamsStatusOpen,
 	})
 	if err != nil {
 		var apierr *yoshi.Error

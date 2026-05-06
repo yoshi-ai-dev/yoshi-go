@@ -35,7 +35,7 @@ func NewApprovalService(opts ...option.RequestOption) (r ApprovalService) {
 	return
 }
 
-// Check the approval status of a pending action (paper trading account creation,
+// Check the approval status of a pending action (Test Drive account creation,
 // trade execution, etc.).
 func (r *ApprovalService) Get(ctx context.Context, threadID string, opts ...option.RequestOption) (res *ApprovalGetResponse, err error) {
 	opts = slices.Concat(r.options, opts)
