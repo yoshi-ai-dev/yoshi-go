@@ -17,19 +17,20 @@ import (
 // interacting with the yoshi API. You should not instantiate this client directly,
 // and instead use the [NewClient] method instead.
 type Client struct {
-	options      []option.RequestOption
-	Accounts     AccountService
-	Transactions TransactionService
-	Scores       ScoreService
-	Goals        GoalService
-	Recurring    RecurringService
-	Benefits     BenefitService
-	Investments  InvestmentService
-	Income       IncomeService
-	Me           MeService
-	PaperTrading PaperTradingService
-	Webhooks     WebhookService
-	Approvals    ApprovalService
+	options           []option.RequestOption
+	Accounts          AccountService
+	Transactions      TransactionService
+	CardIdentityHints CardIdentityHintService
+	Scores            ScoreService
+	Goals             GoalService
+	Recurring         RecurringService
+	Benefits          BenefitService
+	Investments       InvestmentService
+	Income            IncomeService
+	Me                MeService
+	PaperTrading      PaperTradingService
+	Webhooks          WebhookService
+	Approvals         ApprovalService
 }
 
 // DefaultClientOptions read from the environment (YOSHI_API_KEY, YOSHI_BASE_URL).
@@ -64,6 +65,7 @@ func NewClient(opts ...option.RequestOption) (r Client) {
 
 	r.Accounts = NewAccountService(opts...)
 	r.Transactions = NewTransactionService(opts...)
+	r.CardIdentityHints = NewCardIdentityHintService(opts...)
 	r.Scores = NewScoreService(opts...)
 	r.Goals = NewGoalService(opts...)
 	r.Recurring = NewRecurringService(opts...)

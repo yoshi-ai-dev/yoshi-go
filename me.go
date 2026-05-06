@@ -71,6 +71,7 @@ func (r *MeGetResponse) UnmarshalJSON(data []byte) error {
 
 type MeGetResponseData struct {
 	ID            string `json:"id" api:"required"`
+	ConnectedAt   string `json:"connected_at" api:"required"`
 	CreatedAt     string `json:"created_at" api:"required"`
 	Email         string `json:"email" api:"required"`
 	Image         string `json:"image" api:"required"`
@@ -78,6 +79,7 @@ type MeGetResponseData struct {
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		ID            respjson.Field
+		ConnectedAt   respjson.Field
 		CreatedAt     respjson.Field
 		Email         respjson.Field
 		Image         respjson.Field

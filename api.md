@@ -23,10 +23,22 @@ Methods:
 Response Types:
 
 - <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#TransactionListResponse">TransactionListResponse</a>
+- <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#TransactionChangesResponse">TransactionChangesResponse</a>
 
 Methods:
 
 - <code title="get /transactions">client.Transactions.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#TransactionService.List">List</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, query <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#TransactionListParams">TransactionListParams</a>) (\*<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go/packages/pagination">pagination</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go/packages/pagination#CursorPage">CursorPage</a>[<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#TransactionListResponse">TransactionListResponse</a>], <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+- <code title="get /transactions/changes">client.Transactions.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#TransactionService.Changes">Changes</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, query <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#TransactionChangesParams">TransactionChangesParams</a>) (\*<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go/packages/pagination">pagination</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go/packages/pagination#CursorPage">CursorPage</a>[<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#TransactionChangesResponse">TransactionChangesResponse</a>], <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+
+# CardIdentityHints
+
+Response Types:
+
+- <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#CardIdentityHintListResponse">CardIdentityHintListResponse</a>
+
+Methods:
+
+- <code title="get /card-identity-hints">client.CardIdentityHints.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#CardIdentityHintService.List">List</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, query <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#CardIdentityHintListParams">CardIdentityHintListParams</a>) (\*<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#CardIdentityHintListResponse">CardIdentityHintListResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
 
 # Scores
 

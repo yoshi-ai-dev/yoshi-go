@@ -38,8 +38,8 @@ func NewPaperTradingAccountService(opts ...option.RequestOption) (r PaperTrading
 	return
 }
 
-// Create a paper trading account. Requires user approval in the Yoshi web app
-// before the account is created.
+// Create a Test Drive account. Requires user approval in the Yoshi web app before
+// the account is created.
 func (r *PaperTradingAccountService) New(ctx context.Context, body PaperTradingAccountNewParams, opts ...option.RequestOption) (res *PaperTradingAccountNewResponse, err error) {
 	opts = slices.Concat(r.options, opts)
 	path := "paper-trading/accounts"
@@ -47,7 +47,7 @@ func (r *PaperTradingAccountService) New(ctx context.Context, body PaperTradingA
 	return res, err
 }
 
-// List the user's paper trading accounts with current balances.
+// List Test Drive accounts with current balances for the user.
 func (r *PaperTradingAccountService) List(ctx context.Context, opts ...option.RequestOption) (res *PaperTradingAccountListResponse, err error) {
 	opts = slices.Concat(r.options, opts)
 	path := "paper-trading/accounts"

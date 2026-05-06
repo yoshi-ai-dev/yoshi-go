@@ -37,7 +37,8 @@ func NewAccountService(opts ...option.RequestOption) (r AccountService) {
 	return
 }
 
-// List linked financial accounts with current balances and metadata.
+// List linked financial accounts with display metadata and public lifecycle
+// status.
 func (r *AccountService) List(ctx context.Context, query AccountListParams, opts ...option.RequestOption) (res *AccountListResponse, err error) {
 	opts = slices.Concat(r.options, opts)
 	path := "accounts"
@@ -86,6 +87,7 @@ type AccountListResponseDataAccount struct {
 	BalanceAvailable       float64 `json:"balance_available" api:"required"`
 	BalanceCurrent         float64 `json:"balance_current" api:"required"`
 	BalanceLimit           float64 `json:"balance_limit" api:"required"`
+	ConnectionStatus       string  `json:"connection_status" api:"required"`
 	ExternalSource         string  `json:"external_source" api:"required"`
 	Hidden                 bool    `json:"hidden" api:"required"`
 	InstitutionLogo        string  `json:"institution_logo" api:"required"`
@@ -94,9 +96,11 @@ type AccountListResponseDataAccount struct {
 	Mask                   string  `json:"mask" api:"required"`
 	Name                   string  `json:"name" api:"required"`
 	NextPaymentDueDate     string  `json:"next_payment_due_date" api:"required"`
-	Status                 string  `json:"status" api:"required"`
-	Subtype                string  `json:"subtype" api:"required"`
-	Type                   string  `json:"type" api:"required"`
+	// Any of "open", "closed".
+	Status    string `json:"status" api:"required"`
+	Subtype   string `json:"subtype" api:"required"`
+	Type      string `json:"type" api:"required"`
+	UpdatedAt string `json:"updated_at" api:"required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		ID                     respjson.Field
@@ -105,6 +109,7 @@ type AccountListResponseDataAccount struct {
 		BalanceAvailable       respjson.Field
 		BalanceCurrent         respjson.Field
 		BalanceLimit           respjson.Field
+		ConnectionStatus       respjson.Field
 		ExternalSource         respjson.Field
 		Hidden                 respjson.Field
 		InstitutionLogo        respjson.Field
@@ -116,6 +121,7 @@ type AccountListResponseDataAccount struct {
 		Status                 respjson.Field
 		Subtype                respjson.Field
 		Type                   respjson.Field
+		UpdatedAt              respjson.Field
 		ExtraFields            map[string]respjson.Field
 		raw                    string
 	} `json:"-"`
@@ -148,6 +154,8 @@ func (r *AccountListResponseMeta) UnmarshalJSON(data []byte) error {
 type AccountListParams struct {
 	// Any of "true", "false".
 	Hidden AccountListParamsHidden `query:"hidden,omitzero" json:"-"`
+	// Any of "open", "closed", "all".
+	Status AccountListParamsStatus `query:"status,omitzero" json:"-"`
 	paramObj
 }
 
@@ -164,4 +172,12 @@ type AccountListParamsHidden string
 const (
 	AccountListParamsHiddenTrue  AccountListParamsHidden = "true"
 	AccountListParamsHiddenFalse AccountListParamsHidden = "false"
+)
+
+type AccountListParamsStatus string
+
+const (
+	AccountListParamsStatusOpen   AccountListParamsStatus = "open"
+	AccountListParamsStatusClosed AccountListParamsStatus = "closed"
+	AccountListParamsStatusAll    AccountListParamsStatus = "all"
 )
