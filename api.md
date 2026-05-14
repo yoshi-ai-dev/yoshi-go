@@ -92,6 +92,26 @@ Methods:
 
 - <code title="get /investments">client.Investments.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#InvestmentService.List">List</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, query <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#InvestmentListParams">InvestmentListParams</a>) (\*<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#InvestmentListResponse">InvestmentListResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
 
+# Trades
+
+Response Types:
+
+- <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#TradeNewResponse">TradeNewResponse</a>
+
+Methods:
+
+- <code title="post /trades">client.Trades.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#TradeService.New">New</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, body <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#TradeNewParams">TradeNewParams</a>) (\*<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#TradeNewResponse">TradeNewResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+
+# Transfers
+
+Response Types:
+
+- <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#TransferNewResponse">TransferNewResponse</a>
+
+Methods:
+
+- <code title="post /transfers">client.Transfers.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#TransferService.New">New</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, body <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#TransferNewParams">TransferNewParams</a>) (\*<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#TransferNewResponse">TransferNewResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+
 # Income
 
 Response Types:
