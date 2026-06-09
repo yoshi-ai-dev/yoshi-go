@@ -19,17 +19,33 @@ type paramUnion = param.APIUnion
 // aliased to make [param.APIObject] private when embedding
 type paramObj = param.APIObject
 
+type CursorPagePagination struct {
+	Count      int64  `json:"count"`
+	HasMore    bool   `json:"has_more"`
+	NextCursor string `json:"next_cursor" api:"nullable"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		Count       respjson.Field
+		HasMore     respjson.Field
+		NextCursor  respjson.Field
+		ExtraFields map[string]respjson.Field
+		raw         string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r CursorPagePagination) RawJSON() string { return r.JSON.raw }
+func (r *CursorPagePagination) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
 type CursorPage[T any] struct {
-	Data    []T    `json:"data"`
-	Cursor  string `json:"cursor" api:"nullable"`
-	HasMore bool   `json:"has_more"`
-	Count   int64  `json:"count"`
+	Data       []T                  `json:"data"`
+	Pagination CursorPagePagination `json:"pagination"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		Data        respjson.Field
-		Cursor      respjson.Field
-		HasMore     respjson.Field
-		Count       respjson.Field
+		Pagination  respjson.Field
 		ExtraFields map[string]respjson.Field
 		raw         string
 	} `json:"-"`
@@ -50,11 +66,7 @@ func (r *CursorPage[T]) GetNextPage() (res *CursorPage[T], err error) {
 	if len(r.Data) == 0 {
 		return nil, nil
 	}
-
-	if r.JSON.HasMore.Valid() && r.HasMore == false {
-		return nil, nil
-	}
-	next := r.Cursor
+	next := r.Pagination.NextCursor
 	if len(next) == 0 {
 		return nil, nil
 	}
