@@ -16,7 +16,6 @@ import (
 	"github.com/yoshi-ai-dev/yoshi-go/internal/apiquery"
 	"github.com/yoshi-ai-dev/yoshi-go/internal/requestconfig"
 	"github.com/yoshi-ai-dev/yoshi-go/option"
-	"github.com/yoshi-ai-dev/yoshi-go/packages/pagination"
 	"github.com/yoshi-ai-dev/yoshi-go/packages/param"
 	"github.com/yoshi-ai-dev/yoshi-go/packages/respjson"
 )
@@ -54,30 +53,15 @@ func (r *PaperTradingAccountTradeService) New(ctx context.Context, accountID str
 }
 
 // List trade history for a Test Drive account with cursor-based pagination.
-func (r *PaperTradingAccountTradeService) List(ctx context.Context, accountID string, query PaperTradingAccountTradeListParams, opts ...option.RequestOption) (res *pagination.CursorPage[PaperTradingAccountTradeListResponse], err error) {
-	var raw *http.Response
+func (r *PaperTradingAccountTradeService) List(ctx context.Context, accountID string, query PaperTradingAccountTradeListParams, opts ...option.RequestOption) (res *PaperTradingAccountTradeListResponse, err error) {
 	opts = slices.Concat(r.options, opts)
-	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	if accountID == "" {
 		err = errors.New("missing required accountId parameter")
 		return nil, err
 	}
 	path := fmt.Sprintf("paper-trading/accounts/%s/trades", accountID)
-	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
-	if err != nil {
-		return nil, err
-	}
-	err = cfg.Execute()
-	if err != nil {
-		return nil, err
-	}
-	res.SetPageConfig(cfg, raw)
-	return res, nil
-}
-
-// List trade history for a Test Drive account with cursor-based pagination.
-func (r *PaperTradingAccountTradeService) ListAutoPaging(ctx context.Context, accountID string, query PaperTradingAccountTradeListParams, opts ...option.RequestOption) *pagination.CursorPageAutoPager[PaperTradingAccountTradeListResponse] {
-	return pagination.NewCursorPageAutoPager(r.List(ctx, accountID, query, opts...))
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
+	return res, err
 }
 
 type PaperTradingAccountTradeNewResponse struct {
@@ -682,6 +666,32 @@ func (r *PaperTradingAccountTradeNewResponseMeta) UnmarshalJSON(data []byte) err
 }
 
 type PaperTradingAccountTradeListResponse struct {
+	// Number of items in the current page
+	Count int64 `json:"count" api:"required"`
+	// Opaque cursor for the next page, null if no more pages
+	Cursor  string                                     `json:"cursor" api:"required"`
+	Data    []PaperTradingAccountTradeListResponseData `json:"data" api:"required"`
+	HasMore bool                                       `json:"has_more" api:"required"`
+	Meta    PaperTradingAccountTradeListResponseMeta   `json:"meta" api:"required"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		Count       respjson.Field
+		Cursor      respjson.Field
+		Data        respjson.Field
+		HasMore     respjson.Field
+		Meta        respjson.Field
+		ExtraFields map[string]respjson.Field
+		raw         string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r PaperTradingAccountTradeListResponse) RawJSON() string { return r.JSON.raw }
+func (r *PaperTradingAccountTradeListResponse) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type PaperTradingAccountTradeListResponseData struct {
 	ID        string  `json:"id" api:"required"`
 	Amount    float64 `json:"amount" api:"required"`
 	CreatedAt string  `json:"created_at" api:"required"`
@@ -710,8 +720,26 @@ type PaperTradingAccountTradeListResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r PaperTradingAccountTradeListResponse) RawJSON() string { return r.JSON.raw }
-func (r *PaperTradingAccountTradeListResponse) UnmarshalJSON(data []byte) error {
+func (r PaperTradingAccountTradeListResponseData) RawJSON() string { return r.JSON.raw }
+func (r *PaperTradingAccountTradeListResponseData) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type PaperTradingAccountTradeListResponseMeta struct {
+	RequestID string    `json:"request_id" api:"required"`
+	Timestamp time.Time `json:"timestamp" api:"required" format:"date-time"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		RequestID   respjson.Field
+		Timestamp   respjson.Field
+		ExtraFields map[string]respjson.Field
+		raw         string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r PaperTradingAccountTradeListResponseMeta) RawJSON() string { return r.JSON.raw }
+func (r *PaperTradingAccountTradeListResponseMeta) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
