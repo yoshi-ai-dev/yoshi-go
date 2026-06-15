@@ -29,6 +29,12 @@ type Client struct {
 	Trades            TradeService
 	Transfers         TransferService
 	Income            IncomeService
+	Spending          SpendingService
+	NetWorth          NetWorthService
+	CreditDebt        CreditDebtService
+	Automations       AutomationService
+	Briefs            BriefService
+	Securities        SecurityService
 	Me                MeService
 	PaperTrading      PaperTradingService
 	Webhooks          WebhookService
@@ -76,6 +82,12 @@ func NewClient(opts ...option.RequestOption) (r Client) {
 	r.Trades = NewTradeService(opts...)
 	r.Transfers = NewTransferService(opts...)
 	r.Income = NewIncomeService(opts...)
+	r.Spending = NewSpendingService(opts...)
+	r.NetWorth = NewNetWorthService(opts...)
+	r.CreditDebt = NewCreditDebtService(opts...)
+	r.Automations = NewAutomationService(opts...)
+	r.Briefs = NewBriefService(opts...)
+	r.Securities = NewSecurityService(opts...)
 	r.Me = NewMeService(opts...)
 	r.PaperTrading = NewPaperTradingService(opts...)
 	r.Webhooks = NewWebhookService(opts...)

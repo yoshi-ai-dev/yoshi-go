@@ -538,7 +538,7 @@ type PaperTradingAccountTradeNewResponseDataDetailsV1Object3 struct {
 	From          PaperTradingAccountTradeNewResponseDataDetailsV1Object3From `json:"from" api:"required"`
 	// Any of "transfer".
 	Kind string `json:"kind" api:"required"`
-	// Any of "bank_transfer", "instant".
+	// Any of "bank_transfer", "instant", "wire".
 	Method                  string                                                    `json:"method" api:"required"`
 	MethodDisplay           string                                                    `json:"method_display" api:"required"`
 	MoneyMovementDisclosure string                                                    `json:"money_movement_disclosure" api:"required"`
