@@ -54,11 +54,17 @@ Methods:
 
 Response Types:
 
+- <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#GoalNewResponse">GoalNewResponse</a>
+- <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#GoalUpdateResponse">GoalUpdateResponse</a>
 - <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#GoalListResponse">GoalListResponse</a>
+- <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#GoalDeleteResponse">GoalDeleteResponse</a>
 
 Methods:
 
+- <code title="post /goals">client.Goals.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#GoalService.New">New</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, body <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#GoalNewParams">GoalNewParams</a>) (\*<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#GoalNewResponse">GoalNewResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+- <code title="patch /goals/{id}">client.Goals.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#GoalService.Update">Update</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, id <a href="https://pkg.go.dev/builtin#string">string</a>, body <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#GoalUpdateParams">GoalUpdateParams</a>) (\*<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#GoalUpdateResponse">GoalUpdateResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
 - <code title="get /goals">client.Goals.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#GoalService.List">List</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, query <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#GoalListParams">GoalListParams</a>) (\*<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#GoalListResponse">GoalListResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+- <code title="delete /goals/{id}">client.Goals.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#GoalService.Delete">Delete</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, id <a href="https://pkg.go.dev/builtin#string">string</a>) (\*<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#GoalDeleteResponse">GoalDeleteResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
 
 # Recurring
 
@@ -121,6 +127,70 @@ Response Types:
 Methods:
 
 - <code title="get /income">client.Income.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#IncomeService.Get">Get</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>) (\*<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#IncomeGetResponse">IncomeGetResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+
+# Spending
+
+Response Types:
+
+- <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#SpendingGetResponse">SpendingGetResponse</a>
+
+Methods:
+
+- <code title="get /spending">client.Spending.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#SpendingService.Get">Get</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, query <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#SpendingGetParams">SpendingGetParams</a>) (\*<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#SpendingGetResponse">SpendingGetResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+
+# NetWorth
+
+Response Types:
+
+- <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#NetWorthHistoryResponse">NetWorthHistoryResponse</a>
+
+Methods:
+
+- <code title="get /net-worth/history">client.NetWorth.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#NetWorthService.History">History</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, query <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#NetWorthHistoryParams">NetWorthHistoryParams</a>) (\*<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#NetWorthHistoryResponse">NetWorthHistoryResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+
+# CreditDebt
+
+Response Types:
+
+- <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#CreditDebtGetResponse">CreditDebtGetResponse</a>
+
+Methods:
+
+- <code title="get /credit-debt">client.CreditDebt.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#CreditDebtService.Get">Get</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>) (\*<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#CreditDebtGetResponse">CreditDebtGetResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+
+# Automations
+
+Response Types:
+
+- <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#AutomationListResponse">AutomationListResponse</a>
+
+Methods:
+
+- <code title="get /automations">client.Automations.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#AutomationService.List">List</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, query <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#AutomationListParams">AutomationListParams</a>) (\*<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#AutomationListResponse">AutomationListResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+
+# Briefs
+
+Response Types:
+
+- <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#BriefGetResponse">BriefGetResponse</a>
+- <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#BriefListResponse">BriefListResponse</a>
+
+Methods:
+
+- <code title="get /briefs/{id}">client.Briefs.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#BriefService.Get">Get</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, id <a href="https://pkg.go.dev/builtin#string">string</a>) (\*<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#BriefGetResponse">BriefGetResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+- <code title="get /briefs">client.Briefs.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#BriefService.List">List</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, query <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#BriefListParams">BriefListParams</a>) (\*<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go/packages/pagination">pagination</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go/packages/pagination#CursorPage">CursorPage</a>[<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#BriefListResponse">BriefListResponse</a>], <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+
+# Securities
+
+Response Types:
+
+- <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#SecurityGetResponse">SecurityGetResponse</a>
+- <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#SecuritySearchResponse">SecuritySearchResponse</a>
+
+Methods:
+
+- <code title="get /securities/{symbol}">client.Securities.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#SecurityService.Get">Get</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, symbol <a href="https://pkg.go.dev/builtin#string">string</a>) (\*<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#SecurityGetResponse">SecurityGetResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+- <code title="get /securities/search">client.Securities.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#SecurityService.Search">Search</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, query <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#SecuritySearchParams">SecuritySearchParams</a>) (\*<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#SecuritySearchResponse">SecuritySearchResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
 
 # Me
 
