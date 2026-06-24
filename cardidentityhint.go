@@ -99,9 +99,10 @@ type CardIdentityHintListResponseDataCardIdentityHint struct {
 	// "stock plan", "thrift savings plan", "trust", "ugma", "utma", "variable
 	// annuity", "auto", "business", "commercial", "construction", "consumer", "home
 	// equity", "line of credit", "loan", "mortgage", "overdraft", "student", "credit
-	// card".
+	// card", "real estate".
 	Subtype string `json:"subtype" api:"required"`
-	// Any of "investment", "credit", "depository", "loan", "brokerage", "other".
+	// Any of "investment", "credit", "depository", "loan", "brokerage", "real_estate",
+	// "other".
 	Type      string `json:"type" api:"required"`
 	UpdatedAt string `json:"updated_at" api:"required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].

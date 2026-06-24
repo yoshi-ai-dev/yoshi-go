@@ -26,6 +26,7 @@ type Client struct {
 	Recurring         RecurringService
 	Benefits          BenefitService
 	Investments       InvestmentService
+	Benchmarks        BenchmarkService
 	Trades            TradeService
 	Transfers         TransferService
 	Income            IncomeService
@@ -79,6 +80,7 @@ func NewClient(opts ...option.RequestOption) (r Client) {
 	r.Recurring = NewRecurringService(opts...)
 	r.Benefits = NewBenefitService(opts...)
 	r.Investments = NewInvestmentService(opts...)
+	r.Benchmarks = NewBenchmarkService(opts...)
 	r.Trades = NewTradeService(opts...)
 	r.Transfers = NewTransferService(opts...)
 	r.Income = NewIncomeService(opts...)

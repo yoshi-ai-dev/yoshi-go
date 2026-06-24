@@ -26,7 +26,9 @@ import (
 // automatically. You should not instantiate this service directly, and instead use
 // the [NewSecurityService] method instead.
 type SecurityService struct {
-	options []option.RequestOption
+	options      []option.RequestOption
+	Options      SecurityOptionService
+	PriceHistory SecurityPriceHistoryService
 }
 
 // NewSecurityService generates a new service that applies the given options to
@@ -35,6 +37,8 @@ type SecurityService struct {
 func NewSecurityService(opts ...option.RequestOption) (r SecurityService) {
 	r = SecurityService{}
 	r.options = opts
+	r.Options = NewSecurityOptionService(opts...)
+	r.PriceHistory = NewSecurityPriceHistoryService(opts...)
 	return
 }
 

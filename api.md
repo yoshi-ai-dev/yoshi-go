@@ -3,10 +3,12 @@
 Response Types:
 
 - <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#AccountListResponse">AccountListResponse</a>
+- <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#AccountNewRealEstateResponse">AccountNewRealEstateResponse</a>
 
 Methods:
 
 - <code title="get /accounts">client.Accounts.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#AccountService.List">List</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, query <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#AccountListParams">AccountListParams</a>) (\*<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#AccountListResponse">AccountListResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+- <code title="post /accounts/real-estate">client.Accounts.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#AccountService.NewRealEstate">NewRealEstate</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, body <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#AccountNewRealEstateParams">AccountNewRealEstateParams</a>) (\*<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#AccountNewRealEstateResponse">AccountNewRealEstateResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
 
 ## BalanceSeries
 
@@ -93,10 +95,28 @@ Methods:
 Response Types:
 
 - <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#InvestmentListResponse">InvestmentListResponse</a>
+- <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#InvestmentHoldingHistoryResponse">InvestmentHoldingHistoryResponse</a>
+- <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#InvestmentHoldingsResponse">InvestmentHoldingsResponse</a>
+- <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#InvestmentPerformanceResponse">InvestmentPerformanceResponse</a>
+- <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#InvestmentTransactionsResponse">InvestmentTransactionsResponse</a>
 
 Methods:
 
 - <code title="get /investments">client.Investments.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#InvestmentService.List">List</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, query <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#InvestmentListParams">InvestmentListParams</a>) (\*<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#InvestmentListResponse">InvestmentListResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+- <code title="get /investments/holdings/history">client.Investments.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#InvestmentService.HoldingHistory">HoldingHistory</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, query <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#InvestmentHoldingHistoryParams">InvestmentHoldingHistoryParams</a>) (\*<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go/packages/pagination">pagination</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go/packages/pagination#CursorPage">CursorPage</a>[<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#InvestmentHoldingHistoryResponse">InvestmentHoldingHistoryResponse</a>], <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+- <code title="get /investments/holdings">client.Investments.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#InvestmentService.Holdings">Holdings</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, query <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#InvestmentHoldingsParams">InvestmentHoldingsParams</a>) (\*<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go/packages/pagination">pagination</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go/packages/pagination#CursorPage">CursorPage</a>[<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#InvestmentHoldingsResponse">InvestmentHoldingsResponse</a>], <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+- <code title="get /investments/performance">client.Investments.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#InvestmentService.Performance">Performance</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, query <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#InvestmentPerformanceParams">InvestmentPerformanceParams</a>) (\*<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#InvestmentPerformanceResponse">InvestmentPerformanceResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+- <code title="get /investments/transactions">client.Investments.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#InvestmentService.Transactions">Transactions</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, query <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#InvestmentTransactionsParams">InvestmentTransactionsParams</a>) (\*<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go/packages/pagination">pagination</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go/packages/pagination#CursorPage">CursorPage</a>[<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#InvestmentTransactionsResponse">InvestmentTransactionsResponse</a>], <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+
+# Benchmarks
+
+Response Types:
+
+- <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#BenchmarkReplayResponse">BenchmarkReplayResponse</a>
+
+Methods:
+
+- <code title="post /benchmarks/replay">client.Benchmarks.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#BenchmarkService.Replay">Replay</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, body <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#BenchmarkReplayParams">BenchmarkReplayParams</a>) (\*<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#BenchmarkReplayResponse">BenchmarkReplayResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
 
 # Trades
 
@@ -191,6 +211,26 @@ Methods:
 
 - <code title="get /securities/{symbol}">client.Securities.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#SecurityService.Get">Get</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, symbol <a href="https://pkg.go.dev/builtin#string">string</a>) (\*<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#SecurityGetResponse">SecurityGetResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
 - <code title="get /securities/search">client.Securities.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#SecurityService.Search">Search</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, query <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#SecuritySearchParams">SecuritySearchParams</a>) (\*<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#SecuritySearchResponse">SecuritySearchResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+
+## Options
+
+Response Types:
+
+- <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#SecurityOptionChainResponse">SecurityOptionChainResponse</a>
+
+Methods:
+
+- <code title="get /securities/{symbol}/options/chain">client.Securities.Options.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#SecurityOptionService.Chain">Chain</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, symbol <a href="https://pkg.go.dev/builtin#string">string</a>, query <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#SecurityOptionChainParams">SecurityOptionChainParams</a>) (\*<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#SecurityOptionChainResponse">SecurityOptionChainResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+
+## PriceHistory
+
+Response Types:
+
+- <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#SecurityPriceHistoryListResponse">SecurityPriceHistoryListResponse</a>
+
+Methods:
+
+- <code title="get /securities/{symbol}/price-history">client.Securities.PriceHistory.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#SecurityPriceHistoryService.List">List</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, symbol <a href="https://pkg.go.dev/builtin#string">string</a>, query <a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#SecurityPriceHistoryListParams">SecurityPriceHistoryListParams</a>) (\*<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go">yoshi</a>.<a href="https://pkg.go.dev/github.com/yoshi-ai-dev/yoshi-go#SecurityPriceHistoryListResponse">SecurityPriceHistoryListResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
 
 # Me
 
