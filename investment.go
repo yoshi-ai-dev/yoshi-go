@@ -102,6 +102,31 @@ func (r *InvestmentService) Performance(ctx context.Context, query InvestmentPer
 	return res, err
 }
 
+// List normalized current/open tax lots with cost basis, holding period,
+// unrealized gain/loss, and coverage metadata.
+func (r *InvestmentService) TaxLots(ctx context.Context, query InvestmentTaxLotsParams, opts ...option.RequestOption) (res *pagination.CursorPage[InvestmentTaxLotsResponse], err error) {
+	var raw *http.Response
+	opts = slices.Concat(r.options, opts)
+	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
+	path := "investments/tax-lots"
+	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
+	if err != nil {
+		return nil, err
+	}
+	err = cfg.Execute()
+	if err != nil {
+		return nil, err
+	}
+	res.SetPageConfig(cfg, raw)
+	return res, nil
+}
+
+// List normalized current/open tax lots with cost basis, holding period,
+// unrealized gain/loss, and coverage metadata.
+func (r *InvestmentService) TaxLotsAutoPaging(ctx context.Context, query InvestmentTaxLotsParams, opts ...option.RequestOption) *pagination.CursorPageAutoPager[InvestmentTaxLotsResponse] {
+	return pagination.NewCursorPageAutoPager(r.TaxLots(ctx, query, opts...))
+}
+
 // List investment transactions with security identifiers and explicit fee fields.
 func (r *InvestmentService) Transactions(ctx context.Context, query InvestmentTransactionsParams, opts ...option.RequestOption) (res *pagination.CursorPage[InvestmentTransactionsResponse], err error) {
 	var raw *http.Response
@@ -700,6 +725,96 @@ func (r *InvestmentPerformanceResponseMeta) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
+type InvestmentTaxLotsResponse struct {
+	AccountID        string `json:"account_id" api:"required" format:"uuid"`
+	AccountName      string `json:"account_name" api:"required"`
+	AcquiredAt       string `json:"acquired_at" api:"required"`
+	AsOf             string `json:"as_of" api:"required"`
+	CostBasisPerUnit string `json:"cost_basis_per_unit" api:"required"`
+	CostBasisTotal   string `json:"cost_basis_total" api:"required"`
+	CurrentPrice     string `json:"current_price" api:"required"`
+	CurrentPriceAt   string `json:"current_price_at" api:"required"`
+	CurrentValue     string `json:"current_value" api:"required"`
+	// Any of "missing_acquired_at", "missing_cost_basis", "missing_current_price",
+	// "missing_quantity", "unknown_position_type", "unsupported_short_financials".
+	DataQuality []string `json:"data_quality" api:"required"`
+	// Any of "short_term", "long_term", "unknown".
+	HoldingPeriod     InvestmentTaxLotsResponseHoldingPeriod `json:"holding_period" api:"required"`
+	HoldingPeriodAsOf string                                 `json:"holding_period_as_of" api:"required"`
+	ISOCurrencyCode   string                                 `json:"iso_currency_code" api:"required"`
+	LotID             string                                 `json:"lot_id" api:"required"`
+	OriginalQuantity  string                                 `json:"original_quantity" api:"required"`
+	// Any of "long", "short", "unknown".
+	PositionType      InvestmentTaxLotsResponsePositionType `json:"position_type" api:"required"`
+	RemainingQuantity string                                `json:"remaining_quantity" api:"required"`
+	SecurityID        string                                `json:"security_id" api:"required" format:"uuid"`
+	SecurityName      string                                `json:"security_name" api:"required"`
+	// Any of "institution", "yoshi_trade".
+	Source                    InvestmentTaxLotsResponseSource `json:"source" api:"required"`
+	Symbol                    string                          `json:"symbol" api:"required"`
+	UnofficialCurrencyCode    string                          `json:"unofficial_currency_code" api:"required"`
+	UnrealizedGainLoss        string                          `json:"unrealized_gain_loss" api:"required"`
+	UnrealizedGainLossPercent float64                         `json:"unrealized_gain_loss_percent" api:"required"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		AccountID                 respjson.Field
+		AccountName               respjson.Field
+		AcquiredAt                respjson.Field
+		AsOf                      respjson.Field
+		CostBasisPerUnit          respjson.Field
+		CostBasisTotal            respjson.Field
+		CurrentPrice              respjson.Field
+		CurrentPriceAt            respjson.Field
+		CurrentValue              respjson.Field
+		DataQuality               respjson.Field
+		HoldingPeriod             respjson.Field
+		HoldingPeriodAsOf         respjson.Field
+		ISOCurrencyCode           respjson.Field
+		LotID                     respjson.Field
+		OriginalQuantity          respjson.Field
+		PositionType              respjson.Field
+		RemainingQuantity         respjson.Field
+		SecurityID                respjson.Field
+		SecurityName              respjson.Field
+		Source                    respjson.Field
+		Symbol                    respjson.Field
+		UnofficialCurrencyCode    respjson.Field
+		UnrealizedGainLoss        respjson.Field
+		UnrealizedGainLossPercent respjson.Field
+		ExtraFields               map[string]respjson.Field
+		raw                       string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r InvestmentTaxLotsResponse) RawJSON() string { return r.JSON.raw }
+func (r *InvestmentTaxLotsResponse) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type InvestmentTaxLotsResponseHoldingPeriod string
+
+const (
+	InvestmentTaxLotsResponseHoldingPeriodShortTerm InvestmentTaxLotsResponseHoldingPeriod = "short_term"
+	InvestmentTaxLotsResponseHoldingPeriodLongTerm  InvestmentTaxLotsResponseHoldingPeriod = "long_term"
+	InvestmentTaxLotsResponseHoldingPeriodUnknown   InvestmentTaxLotsResponseHoldingPeriod = "unknown"
+)
+
+type InvestmentTaxLotsResponsePositionType string
+
+const (
+	InvestmentTaxLotsResponsePositionTypeLong    InvestmentTaxLotsResponsePositionType = "long"
+	InvestmentTaxLotsResponsePositionTypeShort   InvestmentTaxLotsResponsePositionType = "short"
+	InvestmentTaxLotsResponsePositionTypeUnknown InvestmentTaxLotsResponsePositionType = "unknown"
+)
+
+type InvestmentTaxLotsResponseSource string
+
+const (
+	InvestmentTaxLotsResponseSourceInstitution InvestmentTaxLotsResponseSource = "institution"
+	InvestmentTaxLotsResponseSourceYoshiTrade  InvestmentTaxLotsResponseSource = "yoshi_trade"
+)
+
 type InvestmentTransactionsResponse struct {
 	ID                              string  `json:"id" api:"required" format:"uuid"`
 	AccountID                       string  `json:"account_id" api:"required" format:"uuid"`
@@ -968,6 +1083,29 @@ const (
 	InvestmentPerformanceParamsPeriod1y  InvestmentPerformanceParamsPeriod = "1y"
 	InvestmentPerformanceParamsPeriodAll InvestmentPerformanceParamsPeriod = "all"
 )
+
+type InvestmentTaxLotsParams struct {
+	// Filter by account ID
+	AccountID param.Opt[string] `query:"account_id,omitzero" format:"uuid" json:"-"`
+	// Opaque cursor from a previous response
+	Cursor param.Opt[string] `query:"cursor,omitzero" json:"-"`
+	// Items per page (1-100, default 50)
+	Limit param.Opt[int64] `query:"limit,omitzero" json:"-"`
+	// Filter by security ID
+	SecurityID param.Opt[string] `query:"security_id,omitzero" format:"uuid" json:"-"`
+	// Filter by ticker symbol
+	Symbol param.Opt[string] `query:"symbol,omitzero" json:"-"`
+	paramObj
+}
+
+// URLQuery serializes [InvestmentTaxLotsParams]'s query parameters as
+// `url.Values`.
+func (r InvestmentTaxLotsParams) URLQuery() (v url.Values, err error) {
+	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
+		ArrayFormat:  apiquery.ArrayQueryFormatComma,
+		NestedFormat: apiquery.NestedQueryFormatBrackets,
+	})
+}
 
 type InvestmentTransactionsParams struct {
 	// Filter by account ID

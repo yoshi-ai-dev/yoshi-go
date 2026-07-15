@@ -95,28 +95,38 @@ func (r *BriefGetResponse) UnmarshalJSON(data []byte) error {
 }
 
 type BriefGetResponseData struct {
-	ID             string `json:"id" api:"required"`
-	BriefType      string `json:"brief_type" api:"required"`
-	CreatedAt      string `json:"created_at" api:"required"`
-	Decision       string `json:"decision" api:"required"`
-	Description    string `json:"description" api:"required"`
-	InitialMessage string `json:"initial_message" api:"required"`
-	Read           bool   `json:"read" api:"required"`
-	Status         string `json:"status" api:"required"`
-	Title          string `json:"title" api:"required"`
+	ID string `json:"id" api:"required"`
+	// Any of "unread", "needs_action", "completed".
+	AttentionStatus string `json:"attention_status" api:"required"`
+	BriefID         string `json:"brief_id" api:"required" format:"uuid"`
+	BriefType       string `json:"brief_type" api:"required"`
+	CreatedAt       string `json:"created_at" api:"required"`
+	Decision        string `json:"decision" api:"required"`
+	Description     string `json:"description" api:"required"`
+	InitialMessage  string `json:"initial_message" api:"required"`
+	// Any of "active", "archived", "deleted".
+	LifecycleStatus string `json:"lifecycle_status" api:"required"`
+	Read            bool   `json:"read" api:"required"`
+	Status          string `json:"status" api:"required"`
+	ThreadID        string `json:"thread_id" api:"required"`
+	Title           string `json:"title" api:"required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ID             respjson.Field
-		BriefType      respjson.Field
-		CreatedAt      respjson.Field
-		Decision       respjson.Field
-		Description    respjson.Field
-		InitialMessage respjson.Field
-		Read           respjson.Field
-		Status         respjson.Field
-		Title          respjson.Field
-		ExtraFields    map[string]respjson.Field
-		raw            string
+		ID              respjson.Field
+		AttentionStatus respjson.Field
+		BriefID         respjson.Field
+		BriefType       respjson.Field
+		CreatedAt       respjson.Field
+		Decision        respjson.Field
+		Description     respjson.Field
+		InitialMessage  respjson.Field
+		LifecycleStatus respjson.Field
+		Read            respjson.Field
+		Status          respjson.Field
+		ThreadID        respjson.Field
+		Title           respjson.Field
+		ExtraFields     map[string]respjson.Field
+		raw             string
 	} `json:"-"`
 }
 
@@ -145,26 +155,36 @@ func (r *BriefGetResponseMeta) UnmarshalJSON(data []byte) error {
 }
 
 type BriefListResponse struct {
-	ID          string `json:"id" api:"required"`
-	BriefType   string `json:"brief_type" api:"required"`
-	CreatedAt   string `json:"created_at" api:"required"`
-	Decision    string `json:"decision" api:"required"`
-	Description string `json:"description" api:"required"`
-	Read        bool   `json:"read" api:"required"`
-	Status      string `json:"status" api:"required"`
-	Title       string `json:"title" api:"required"`
+	ID string `json:"id" api:"required"`
+	// Any of "unread", "needs_action", "completed".
+	AttentionStatus BriefListResponseAttentionStatus `json:"attention_status" api:"required"`
+	BriefID         string                           `json:"brief_id" api:"required" format:"uuid"`
+	BriefType       string                           `json:"brief_type" api:"required"`
+	CreatedAt       string                           `json:"created_at" api:"required"`
+	Decision        string                           `json:"decision" api:"required"`
+	Description     string                           `json:"description" api:"required"`
+	// Any of "active", "archived", "deleted".
+	LifecycleStatus BriefListResponseLifecycleStatus `json:"lifecycle_status" api:"required"`
+	Read            bool                             `json:"read" api:"required"`
+	Status          string                           `json:"status" api:"required"`
+	ThreadID        string                           `json:"thread_id" api:"required"`
+	Title           string                           `json:"title" api:"required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ID          respjson.Field
-		BriefType   respjson.Field
-		CreatedAt   respjson.Field
-		Decision    respjson.Field
-		Description respjson.Field
-		Read        respjson.Field
-		Status      respjson.Field
-		Title       respjson.Field
-		ExtraFields map[string]respjson.Field
-		raw         string
+		ID              respjson.Field
+		AttentionStatus respjson.Field
+		BriefID         respjson.Field
+		BriefType       respjson.Field
+		CreatedAt       respjson.Field
+		Decision        respjson.Field
+		Description     respjson.Field
+		LifecycleStatus respjson.Field
+		Read            respjson.Field
+		Status          respjson.Field
+		ThreadID        respjson.Field
+		Title           respjson.Field
+		ExtraFields     map[string]respjson.Field
+		raw             string
 	} `json:"-"`
 }
 
@@ -173,6 +193,22 @@ func (r BriefListResponse) RawJSON() string { return r.JSON.raw }
 func (r *BriefListResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
+
+type BriefListResponseAttentionStatus string
+
+const (
+	BriefListResponseAttentionStatusUnread      BriefListResponseAttentionStatus = "unread"
+	BriefListResponseAttentionStatusNeedsAction BriefListResponseAttentionStatus = "needs_action"
+	BriefListResponseAttentionStatusCompleted   BriefListResponseAttentionStatus = "completed"
+)
+
+type BriefListResponseLifecycleStatus string
+
+const (
+	BriefListResponseLifecycleStatusActive   BriefListResponseLifecycleStatus = "active"
+	BriefListResponseLifecycleStatusArchived BriefListResponseLifecycleStatus = "archived"
+	BriefListResponseLifecycleStatusDeleted  BriefListResponseLifecycleStatus = "deleted"
+)
 
 type BriefListParams struct {
 	// Opaque cursor from a previous response

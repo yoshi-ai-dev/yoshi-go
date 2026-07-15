@@ -35,7 +35,8 @@ func NewTransferService(opts ...option.RequestOption) (r TransferService) {
 	return
 }
 
-// Create an approval-backed bank or instant transfer.
+// Create an approval-backed bank transfer (ACH). Omitted method defaults to
+// bank_transfer.
 func (r *TransferService) New(ctx context.Context, body TransferNewParams, opts ...option.RequestOption) (res *TransferNewResponse, err error) {
 	opts = slices.Concat(r.options, opts)
 	path := "transfers"
@@ -625,15 +626,15 @@ func (r *TransferNewResponseMeta) UnmarshalJSON(data []byte) error {
 }
 
 type TransferNewParams struct {
-	Amount TransferNewParamsAmountUnion `json:"amount,omitzero" api:"required"`
-	FromID string                       `json:"from_id" api:"required"`
-	// Any of "bank_transfer", "instant".
-	Method      TransferNewParamsMethod `json:"method,omitzero" api:"required"`
-	ToID        string                  `json:"to_id" api:"required"`
-	Description param.Opt[string]       `json:"description,omitzero"`
-	RequestID   param.Opt[string]       `json:"request_id,omitzero" format:"uuid"`
+	Amount      TransferNewParamsAmountUnion `json:"amount,omitzero" api:"required"`
+	FromID      string                       `json:"from_id" api:"required"`
+	ToID        string                       `json:"to_id" api:"required"`
+	Description param.Opt[string]            `json:"description,omitzero"`
+	RequestID   param.Opt[string]            `json:"request_id,omitzero" format:"uuid"`
 	// Any of "USD".
 	CurrencyCode TransferNewParamsCurrencyCode `json:"currency_code,omitzero"`
+	// Any of "bank_transfer".
+	Method TransferNewParamsMethod `json:"method,omitzero"`
 	paramObj
 }
 
@@ -661,15 +662,14 @@ func (u *TransferNewParamsAmountUnion) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, u)
 }
 
-type TransferNewParamsMethod string
-
-const (
-	TransferNewParamsMethodBankTransfer TransferNewParamsMethod = "bank_transfer"
-	TransferNewParamsMethodInstant      TransferNewParamsMethod = "instant"
-)
-
 type TransferNewParamsCurrencyCode string
 
 const (
 	TransferNewParamsCurrencyCodeUsd TransferNewParamsCurrencyCode = "USD"
+)
+
+type TransferNewParamsMethod string
+
+const (
+	TransferNewParamsMethodBankTransfer TransferNewParamsMethod = "bank_transfer"
 )
