@@ -563,21 +563,22 @@ func (r *InvestmentPerformanceResponse) UnmarshalJSON(data []byte) error {
 }
 
 type InvestmentPerformanceResponseData struct {
-	DataQuality             InvestmentPerformanceResponseDataDataQuality `json:"data_quality" api:"required"`
-	EndDate                 string                                       `json:"end_date" api:"required"`
-	EndValue                float64                                      `json:"end_value" api:"required"`
-	InvestmentIncomePercent float64                                      `json:"investment_income_percent" api:"required"`
-	InvestmentIncomeTotal   float64                                      `json:"investment_income_total" api:"required"`
-	NetContributions        float64                                      `json:"net_contributions" api:"required"`
-	Period                  string                                       `json:"period" api:"required"`
-	RealizedGainsTotal      float64                                      `json:"realized_gains_total" api:"required"`
-	Series                  []InvestmentPerformanceResponseDataSeries    `json:"series" api:"required"`
-	StartDate               string                                       `json:"start_date" api:"required"`
-	StartValue              float64                                      `json:"start_value" api:"required"`
-	TotalReturnDollars      float64                                      `json:"total_return_dollars" api:"required"`
-	TotalReturnPercent      float64                                      `json:"total_return_percent" api:"required"`
-	UnrealizedGainsTotal    float64                                      `json:"unrealized_gains_total" api:"required"`
-	CurrentHoldingsCount    float64                                      `json:"current_holdings_count"`
+	DataQuality             InvestmentPerformanceResponseDataDataQuality    `json:"data_quality" api:"required"`
+	EndDate                 string                                          `json:"end_date" api:"required"`
+	EndValue                float64                                         `json:"end_value" api:"required"`
+	InvestmentIncomePercent float64                                         `json:"investment_income_percent" api:"required"`
+	InvestmentIncomeTotal   float64                                         `json:"investment_income_total" api:"required"`
+	NetContributions        float64                                         `json:"net_contributions" api:"required"`
+	Period                  string                                          `json:"period" api:"required"`
+	RealizedGainsTotal      float64                                         `json:"realized_gains_total" api:"required"`
+	ReturnSeries            []InvestmentPerformanceResponseDataReturnSeries `json:"return_series" api:"required"`
+	Series                  []InvestmentPerformanceResponseDataSeries       `json:"series" api:"required"`
+	StartDate               string                                          `json:"start_date" api:"required"`
+	StartValue              float64                                         `json:"start_value" api:"required"`
+	TotalReturnDollars      float64                                         `json:"total_return_dollars" api:"required"`
+	TotalReturnPercent      float64                                         `json:"total_return_percent" api:"required"`
+	UnrealizedGainsTotal    float64                                         `json:"unrealized_gains_total" api:"required"`
+	CurrentHoldingsCount    float64                                         `json:"current_holdings_count"`
 	// Any of "ok", "empty".
 	DataStatus string `json:"data_status"`
 	// Any of "no_investment_accounts", "no_daily_balances",
@@ -594,6 +595,7 @@ type InvestmentPerformanceResponseData struct {
 		NetContributions        respjson.Field
 		Period                  respjson.Field
 		RealizedGainsTotal      respjson.Field
+		ReturnSeries            respjson.Field
 		Series                  respjson.Field
 		StartDate               respjson.Field
 		StartValue              respjson.Field
@@ -686,6 +688,26 @@ func (r InvestmentPerformanceResponseDataDataQualityExcludedAccount) RawJSON() s
 	return r.JSON.raw
 }
 func (r *InvestmentPerformanceResponseDataDataQualityExcludedAccount) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type InvestmentPerformanceResponseDataReturnSeries struct {
+	Date          string  `json:"date" api:"required"`
+	ReturnCents   float64 `json:"return_cents" api:"required"`
+	ReturnPercent float64 `json:"return_percent" api:"required"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		Date          respjson.Field
+		ReturnCents   respjson.Field
+		ReturnPercent respjson.Field
+		ExtraFields   map[string]respjson.Field
+		raw           string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r InvestmentPerformanceResponseDataReturnSeries) RawJSON() string { return r.JSON.raw }
+func (r *InvestmentPerformanceResponseDataReturnSeries) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
