@@ -289,7 +289,7 @@ type TradeNewResponseDataDetailsV1Object struct {
 	BottomMarkdown       string                                     `json:"bottom_markdown" api:"required"`
 	CurrentPriceDisplay  string                                     `json:"current_price_display" api:"required"`
 	EstimatedCostDisplay string                                     `json:"estimated_cost_display" api:"required"`
-	// Any of "shares", "dollars".
+	// Any of "shares", "dollars", "liquidate".
 	InputMode string `json:"input_mode" api:"required"`
 	// Any of "paper_trade".
 	Kind                    string `json:"kind" api:"required"`
@@ -393,7 +393,7 @@ type TradeNewResponseDataDetailsV1Object2 struct {
 	BottomMarkdown       string                                      `json:"bottom_markdown" api:"required"`
 	CurrentPriceDisplay  string                                      `json:"current_price_display" api:"required"`
 	EstimatedCostDisplay string                                      `json:"estimated_cost_display" api:"required"`
-	// Any of "shares", "dollars".
+	// Any of "shares", "dollars", "liquidate".
 	InputMode string `json:"input_mode" api:"required"`
 	// Any of "trade".
 	Kind                    string `json:"kind" api:"required"`
