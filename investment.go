@@ -563,12 +563,16 @@ func (r *InvestmentPerformanceResponse) UnmarshalJSON(data []byte) error {
 }
 
 type InvestmentPerformanceResponseData struct {
+	CurrentDrawdownPercent  float64                                         `json:"current_drawdown_percent" api:"required"`
 	DataQuality             InvestmentPerformanceResponseDataDataQuality    `json:"data_quality" api:"required"`
 	EndDate                 string                                          `json:"end_date" api:"required"`
 	EndValue                float64                                         `json:"end_value" api:"required"`
 	InvestmentIncomePercent float64                                         `json:"investment_income_percent" api:"required"`
 	InvestmentIncomeTotal   float64                                         `json:"investment_income_total" api:"required"`
+	MaxDrawdownPercent      float64                                         `json:"max_drawdown_percent" api:"required"`
 	NetContributions        float64                                         `json:"net_contributions" api:"required"`
+	PeakDate                string                                          `json:"peak_date" api:"required"`
+	PeakValue               float64                                         `json:"peak_value" api:"required"`
 	Period                  string                                          `json:"period" api:"required"`
 	RealizedGainsTotal      float64                                         `json:"realized_gains_total" api:"required"`
 	ReturnSeries            []InvestmentPerformanceResponseDataReturnSeries `json:"return_series" api:"required"`
@@ -587,12 +591,16 @@ type InvestmentPerformanceResponseData struct {
 	IncludedAccountCount float64 `json:"included_account_count"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
+		CurrentDrawdownPercent  respjson.Field
 		DataQuality             respjson.Field
 		EndDate                 respjson.Field
 		EndValue                respjson.Field
 		InvestmentIncomePercent respjson.Field
 		InvestmentIncomeTotal   respjson.Field
+		MaxDrawdownPercent      respjson.Field
 		NetContributions        respjson.Field
+		PeakDate                respjson.Field
+		PeakValue               respjson.Field
 		Period                  respjson.Field
 		RealizedGainsTotal      respjson.Field
 		ReturnSeries            respjson.Field
