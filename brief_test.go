@@ -50,7 +50,7 @@ func TestBriefListWithOptionalParams(t *testing.T) {
 		option.WithAPIKey("My API Key"),
 	)
 	_, err := client.Briefs.List(context.TODO(), yoshi.BriefListParams{
-		BriefType: yoshi.BriefListParamsBriefTypeActionRequested,
+		BriefType: yoshi.BriefListParamsBriefTypeNeedsYou,
 		Cursor:    yoshi.String("cursor"),
 		Limit:     yoshi.Int(1),
 	})
