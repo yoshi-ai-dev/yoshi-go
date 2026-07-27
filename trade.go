@@ -64,8 +64,7 @@ func (r *TradeNewResponse) UnmarshalJSON(data []byte) error {
 
 type TradeNewResponseData struct {
 	ActionID string `json:"action_id" api:"required" format:"uuid"`
-	// Any of "trade", "transfer", "data_fix", "automation", "account_create",
-	// "unknown".
+	// Any of "trade", "transfer", "automation", "account_create", "unknown".
 	ActionKind          string                             `json:"action_kind" api:"required"`
 	ActionType          string                             `json:"action_type" api:"required"`
 	ApprovalStatusURL   string                             `json:"approval_status_url" api:"required"`
