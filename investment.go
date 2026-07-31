@@ -170,13 +170,19 @@ func (r *InvestmentListResponse) UnmarshalJSON(data []byte) error {
 
 type InvestmentListResponseData struct {
 	AccountTotal InvestmentListResponseDataAccountTotal `json:"account_total" api:"required"`
-	Groups       []InvestmentListResponseDataGroup      `json:"groups" api:"required"`
+	// Any of "Today".
+	DayChangePeriodLabel string `json:"day_change_period_label" api:"required"`
+	// Any of "premarket", "regular", "after_hours", "closed".
+	DayChangeSession string                            `json:"day_change_session" api:"required"`
+	Groups           []InvestmentListResponseDataGroup `json:"groups" api:"required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		AccountTotal respjson.Field
-		Groups       respjson.Field
-		ExtraFields  map[string]respjson.Field
-		raw          string
+		AccountTotal         respjson.Field
+		DayChangePeriodLabel respjson.Field
+		DayChangeSession     respjson.Field
+		Groups               respjson.Field
+		ExtraFields          map[string]respjson.Field
+		raw                  string
 	} `json:"-"`
 }
 
@@ -191,6 +197,7 @@ type InvestmentListResponseDataAccountTotal struct {
 	CurrentValue         float64 `json:"current_value" api:"required"`
 	DayChange            float64 `json:"day_change" api:"required"`
 	DayChangePercent     float64 `json:"day_change_percent" api:"required"`
+	PositionDayChange    float64 `json:"position_day_change" api:"required"`
 	TotalGainLoss        float64 `json:"total_gain_loss" api:"required"`
 	TotalGainLossPercent float64 `json:"total_gain_loss_percent" api:"required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
@@ -199,6 +206,7 @@ type InvestmentListResponseDataAccountTotal struct {
 		CurrentValue         respjson.Field
 		DayChange            respjson.Field
 		DayChangePercent     respjson.Field
+		PositionDayChange    respjson.Field
 		TotalGainLoss        respjson.Field
 		TotalGainLossPercent respjson.Field
 		ExtraFields          map[string]respjson.Field
