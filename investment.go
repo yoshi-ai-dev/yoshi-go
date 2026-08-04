@@ -873,7 +873,7 @@ type InvestmentTransactionsResponse struct {
 	SecurityID                      string  `json:"security_id" api:"required" format:"uuid"`
 	SecurityName                    string  `json:"security_name" api:"required"`
 	Sedol                           string  `json:"sedol" api:"required"`
-	// Any of "pending", "posted", "cancelled".
+	// Any of "pending", "posted", "cancelled", "rejected".
 	Status InvestmentTransactionsResponseStatus `json:"status" api:"required"`
 	// Any of "account fee", "adjustment", "assignment", "buy", "buy to cover",
 	// "contribution", "deposit", "distribution", "dividend", "dividend reinvestment",
@@ -936,6 +936,7 @@ const (
 	InvestmentTransactionsResponseStatusPending   InvestmentTransactionsResponseStatus = "pending"
 	InvestmentTransactionsResponseStatusPosted    InvestmentTransactionsResponseStatus = "posted"
 	InvestmentTransactionsResponseStatusCancelled InvestmentTransactionsResponseStatus = "cancelled"
+	InvestmentTransactionsResponseStatusRejected  InvestmentTransactionsResponseStatus = "rejected"
 )
 
 type InvestmentTransactionsResponseSubtype string
