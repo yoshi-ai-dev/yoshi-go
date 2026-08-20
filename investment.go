@@ -892,6 +892,8 @@ type InvestmentTransactionsResponse struct {
 	Type                   InvestmentTransactionsResponseType `json:"type" api:"required"`
 	UnofficialCurrencyCode string                             `json:"unofficial_currency_code" api:"required"`
 	UpdatedAt              string                             `json:"updated_at" api:"required"`
+	// Any of "filled", "canceled", "rejected".
+	OrderOutcome InvestmentTransactionsResponseOrderOutcome `json:"order_outcome"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		ID                              respjson.Field
@@ -919,6 +921,7 @@ type InvestmentTransactionsResponse struct {
 		Type                            respjson.Field
 		UnofficialCurrencyCode          respjson.Field
 		UpdatedAt                       respjson.Field
+		OrderOutcome                    respjson.Field
 		ExtraFields                     map[string]respjson.Field
 		raw                             string
 	} `json:"-"`
@@ -1001,6 +1004,14 @@ const (
 	InvestmentTransactionsResponseTypeCash     InvestmentTransactionsResponseType = "cash"
 	InvestmentTransactionsResponseTypeFee      InvestmentTransactionsResponseType = "fee"
 	InvestmentTransactionsResponseTypeTransfer InvestmentTransactionsResponseType = "transfer"
+)
+
+type InvestmentTransactionsResponseOrderOutcome string
+
+const (
+	InvestmentTransactionsResponseOrderOutcomeFilled   InvestmentTransactionsResponseOrderOutcome = "filled"
+	InvestmentTransactionsResponseOrderOutcomeCanceled InvestmentTransactionsResponseOrderOutcome = "canceled"
+	InvestmentTransactionsResponseOrderOutcomeRejected InvestmentTransactionsResponseOrderOutcome = "rejected"
 )
 
 type InvestmentListParams struct {
