@@ -152,8 +152,10 @@ type BriefGetResponseDataContentSectionUnion struct {
 	Type     string `json:"type"`
 	// This field is a union of [[]BriefGetResponseDataContentSectionObject2Row],
 	// [[]BriefGetResponseDataContentSectionObject5Row]
-	Rows  BriefGetResponseDataContentSectionUnionRows `json:"rows"`
-	Title string                                      `json:"title"`
+	Rows BriefGetResponseDataContentSectionUnionRows `json:"rows"`
+	// This field is from variant [BriefGetResponseDataContentSectionObject2].
+	Presentation string `json:"presentation"`
+	Title        string `json:"title"`
 	// This field is from variant [BriefGetResponseDataContentSectionObject3].
 	Body string `json:"body"`
 	// This field is from variant [BriefGetResponseDataContentSectionObject3].
@@ -165,17 +167,18 @@ type BriefGetResponseDataContentSectionUnion struct {
 	// This field is from variant [BriefGetResponseDataContentSectionObject5].
 	Columns []BriefGetResponseDataContentSectionObject5Column `json:"columns"`
 	JSON    struct {
-		Key      respjson.Field
-		Markdown respjson.Field
-		Type     respjson.Field
-		Rows     respjson.Field
-		Title    respjson.Field
-		Body     respjson.Field
-		Tone     respjson.Field
-		Evidence respjson.Field
-		Caption  respjson.Field
-		Columns  respjson.Field
-		raw      string
+		Key          respjson.Field
+		Markdown     respjson.Field
+		Type         respjson.Field
+		Rows         respjson.Field
+		Presentation respjson.Field
+		Title        respjson.Field
+		Body         respjson.Field
+		Tone         respjson.Field
+		Evidence     respjson.Field
+		Caption      respjson.Field
+		Columns      respjson.Field
+		raw          string
 	} `json:"-"`
 }
 
@@ -265,16 +268,19 @@ type BriefGetResponseDataContentSectionObject2 struct {
 	Key  string                                         `json:"key" api:"required"`
 	Rows []BriefGetResponseDataContentSectionObject2Row `json:"rows" api:"required"`
 	// Any of "row_group".
-	Type  string `json:"type" api:"required"`
-	Title string `json:"title" api:"nullable"`
+	Type string `json:"type" api:"required"`
+	// Any of "compact".
+	Presentation string `json:"presentation"`
+	Title        string `json:"title" api:"nullable"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Key         respjson.Field
-		Rows        respjson.Field
-		Type        respjson.Field
-		Title       respjson.Field
-		ExtraFields map[string]respjson.Field
-		raw         string
+		Key          respjson.Field
+		Rows         respjson.Field
+		Type         respjson.Field
+		Presentation respjson.Field
+		Title        respjson.Field
+		ExtraFields  map[string]respjson.Field
+		raw          string
 	} `json:"-"`
 }
 
