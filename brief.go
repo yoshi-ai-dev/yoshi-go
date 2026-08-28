@@ -142,7 +142,8 @@ func (r *BriefGetResponseData) UnmarshalJSON(data []byte) error {
 // [BriefGetResponseDataContentSectionObject2],
 // [BriefGetResponseDataContentSectionObject3],
 // [BriefGetResponseDataContentSectionObject4],
-// [BriefGetResponseDataContentSectionObject5].
+// [BriefGetResponseDataContentSectionObject5],
+// [BriefGetResponseDataContentSectionObject6].
 //
 // Use the methods beginning with 'As' to cast the union to one of its variants.
 type BriefGetResponseDataContentSectionUnion struct {
@@ -166,19 +167,40 @@ type BriefGetResponseDataContentSectionUnion struct {
 	Caption string `json:"caption"`
 	// This field is from variant [BriefGetResponseDataContentSectionObject5].
 	Columns []BriefGetResponseDataContentSectionObject5Column `json:"columns"`
+	// This field is from variant [BriefGetResponseDataContentSectionObject6].
+	DeclineLabel string `json:"decline_label"`
+	// This field is from variant [BriefGetResponseDataContentSectionObject6].
+	Footer string `json:"footer"`
+	// This field is from variant [BriefGetResponseDataContentSectionObject6].
+	Heading string `json:"heading"`
+	// This field is from variant [BriefGetResponseDataContentSectionObject6].
+	QuestionnaireID string `json:"questionnaire_id"`
+	// This field is from variant [BriefGetResponseDataContentSectionObject6].
+	Questions []BriefGetResponseDataContentSectionObject6Question `json:"questions"`
+	// This field is from variant [BriefGetResponseDataContentSectionObject6].
+	SubmitLabel string `json:"submit_label"`
+	// This field is from variant [BriefGetResponseDataContentSectionObject6].
+	Version int64 `json:"version"`
 	JSON    struct {
-		Key          respjson.Field
-		Markdown     respjson.Field
-		Type         respjson.Field
-		Rows         respjson.Field
-		Presentation respjson.Field
-		Title        respjson.Field
-		Body         respjson.Field
-		Tone         respjson.Field
-		Evidence     respjson.Field
-		Caption      respjson.Field
-		Columns      respjson.Field
-		raw          string
+		Key             respjson.Field
+		Markdown        respjson.Field
+		Type            respjson.Field
+		Rows            respjson.Field
+		Presentation    respjson.Field
+		Title           respjson.Field
+		Body            respjson.Field
+		Tone            respjson.Field
+		Evidence        respjson.Field
+		Caption         respjson.Field
+		Columns         respjson.Field
+		DeclineLabel    respjson.Field
+		Footer          respjson.Field
+		Heading         respjson.Field
+		QuestionnaireID respjson.Field
+		Questions       respjson.Field
+		SubmitLabel     respjson.Field
+		Version         respjson.Field
+		raw             string
 	} `json:"-"`
 }
 
@@ -203,6 +225,11 @@ func (u BriefGetResponseDataContentSectionUnion) AsBriefGetResponseDataContentSe
 }
 
 func (u BriefGetResponseDataContentSectionUnion) AsBriefGetResponseDataContentSectionObject5() (v BriefGetResponseDataContentSectionObject5) {
+	apijson.UnmarshalRoot(json.RawMessage(u.JSON.raw), &v)
+	return
+}
+
+func (u BriefGetResponseDataContentSectionUnion) AsBriefGetResponseDataContentSectionObject6() (v BriefGetResponseDataContentSectionObject6) {
 	apijson.UnmarshalRoot(json.RawMessage(u.JSON.raw), &v)
 	return
 }
@@ -514,6 +541,106 @@ type BriefGetResponseDataContentSectionObject5Row struct {
 // Returns the unmodified JSON received from the API
 func (r BriefGetResponseDataContentSectionObject5Row) RawJSON() string { return r.JSON.raw }
 func (r *BriefGetResponseDataContentSectionObject5Row) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type BriefGetResponseDataContentSectionObject6 struct {
+	DeclineLabel    string                                              `json:"decline_label" api:"required"`
+	Footer          string                                              `json:"footer" api:"required"`
+	Heading         string                                              `json:"heading" api:"required"`
+	Key             string                                              `json:"key" api:"required"`
+	QuestionnaireID string                                              `json:"questionnaire_id" api:"required"`
+	Questions       []BriefGetResponseDataContentSectionObject6Question `json:"questions" api:"required"`
+	SubmitLabel     string                                              `json:"submit_label" api:"required"`
+	// Any of "questionnaire".
+	Type    string `json:"type" api:"required"`
+	Version int64  `json:"version" api:"required"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		DeclineLabel    respjson.Field
+		Footer          respjson.Field
+		Heading         respjson.Field
+		Key             respjson.Field
+		QuestionnaireID respjson.Field
+		Questions       respjson.Field
+		SubmitLabel     respjson.Field
+		Type            respjson.Field
+		Version         respjson.Field
+		ExtraFields     map[string]respjson.Field
+		raw             string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r BriefGetResponseDataContentSectionObject6) RawJSON() string { return r.JSON.raw }
+func (r *BriefGetResponseDataContentSectionObject6) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type BriefGetResponseDataContentSectionObject6Question struct {
+	ID       string                                                    `json:"id" api:"required"`
+	Options  []BriefGetResponseDataContentSectionObject6QuestionOption `json:"options" api:"required"`
+	Prompt   string                                                    `json:"prompt" api:"required"`
+	Required bool                                                      `json:"required" api:"required"`
+	// Any of "single", "multiple".
+	SelectionMode string                                                     `json:"selection_mode" api:"required"`
+	TextEntry     BriefGetResponseDataContentSectionObject6QuestionTextEntry `json:"text_entry" api:"required"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		ID            respjson.Field
+		Options       respjson.Field
+		Prompt        respjson.Field
+		Required      respjson.Field
+		SelectionMode respjson.Field
+		TextEntry     respjson.Field
+		ExtraFields   map[string]respjson.Field
+		raw           string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r BriefGetResponseDataContentSectionObject6Question) RawJSON() string { return r.JSON.raw }
+func (r *BriefGetResponseDataContentSectionObject6Question) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type BriefGetResponseDataContentSectionObject6QuestionOption struct {
+	Label string `json:"label" api:"required"`
+	Value string `json:"value" api:"required"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		Label       respjson.Field
+		Value       respjson.Field
+		ExtraFields map[string]respjson.Field
+		raw         string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r BriefGetResponseDataContentSectionObject6QuestionOption) RawJSON() string { return r.JSON.raw }
+func (r *BriefGetResponseDataContentSectionObject6QuestionOption) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type BriefGetResponseDataContentSectionObject6QuestionTextEntry struct {
+	Label             string   `json:"label" api:"required"`
+	Placeholder       string   `json:"placeholder" api:"required"`
+	RequiredForValues []string `json:"required_for_values" api:"required"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		Label             respjson.Field
+		Placeholder       respjson.Field
+		RequiredForValues respjson.Field
+		ExtraFields       map[string]respjson.Field
+		raw               string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r BriefGetResponseDataContentSectionObject6QuestionTextEntry) RawJSON() string {
+	return r.JSON.raw
+}
+func (r *BriefGetResponseDataContentSectionObject6QuestionTextEntry) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
