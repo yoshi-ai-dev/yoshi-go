@@ -35,7 +35,7 @@ func NewPaperTradingAccountHoldingService(opts ...option.RequestOption) (r Paper
 	return
 }
 
-// Get current holdings/positions for a paper trading account.
+// Get current holdings/positions for a Test Drive account.
 func (r *PaperTradingAccountHoldingService) List(ctx context.Context, accountID string, opts ...option.RequestOption) (res *PaperTradingAccountHoldingListResponse, err error) {
 	opts = slices.Concat(r.options, opts)
 	if accountID == "" {

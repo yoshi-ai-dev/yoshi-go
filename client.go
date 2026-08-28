@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"os"
 	"slices"
+	"strings"
 
 	"github.com/yoshi-ai-dev/yoshi-go/internal/requestconfig"
 	"github.com/yoshi-ai-dev/yoshi-go/option"
@@ -16,30 +17,48 @@ import (
 // interacting with the yoshi API. You should not instantiate this client directly,
 // and instead use the [NewClient] method instead.
 type Client struct {
-	options      []option.RequestOption
-	Accounts     AccountService
-	Transactions TransactionService
-	Scores       ScoreService
-	Goals        GoalService
-	Recurring    RecurringService
-	Benefits     BenefitService
-	Investments  InvestmentService
-	Income       IncomeService
-	Me           MeService
-	PaperTrading PaperTradingService
-	Webhooks     WebhookService
-	Approvals    ApprovalService
+	options           []option.RequestOption
+	Accounts          AccountService
+	Transactions      TransactionService
+	CardIdentityHints CardIdentityHintService
+	Scores            ScoreService
+	Goals             GoalService
+	Recurring         RecurringService
+	Benefits          BenefitService
+	Investments       InvestmentService
+	Benchmarks        BenchmarkService
+	Trades            TradeService
+	Transfers         TransferService
+	Income            IncomeService
+	Spending          SpendingService
+	NetWorth          NetWorthService
+	CreditDebt        CreditDebtService
+	Automations       AutomationService
+	Briefs            BriefService
+	Securities        SecurityService
+	Me                MeService
+	PaperTrading      PaperTradingService
+	Webhooks          WebhookService
+	Approvals         ApprovalService
 }
 
 // DefaultClientOptions read from the environment (YOSHI_API_KEY, YOSHI_BASE_URL).
 // This should be used to initialize new clients.
 func DefaultClientOptions() []option.RequestOption {
-	defaults := []option.RequestOption{option.WithEnvironmentProduction()}
+	defaults := []option.RequestOption{option.WithHTTPClient(defaultHTTPClient()), option.WithEnvironmentProduction()}
 	if o, ok := os.LookupEnv("YOSHI_BASE_URL"); ok {
 		defaults = append(defaults, option.WithBaseURL(o))
 	}
 	if o, ok := os.LookupEnv("YOSHI_API_KEY"); ok {
 		defaults = append(defaults, option.WithAPIKey(o))
+	}
+	if o, ok := os.LookupEnv("YOSHI_CUSTOM_HEADERS"); ok {
+		for _, line := range strings.Split(o, "\n") {
+			colon := strings.Index(line, ":")
+			if colon >= 0 {
+				defaults = append(defaults, option.WithHeader(strings.TrimSpace(line[:colon]), strings.TrimSpace(line[colon+1:])))
+			}
+		}
 	}
 	return defaults
 }
@@ -55,12 +74,22 @@ func NewClient(opts ...option.RequestOption) (r Client) {
 
 	r.Accounts = NewAccountService(opts...)
 	r.Transactions = NewTransactionService(opts...)
+	r.CardIdentityHints = NewCardIdentityHintService(opts...)
 	r.Scores = NewScoreService(opts...)
 	r.Goals = NewGoalService(opts...)
 	r.Recurring = NewRecurringService(opts...)
 	r.Benefits = NewBenefitService(opts...)
 	r.Investments = NewInvestmentService(opts...)
+	r.Benchmarks = NewBenchmarkService(opts...)
+	r.Trades = NewTradeService(opts...)
+	r.Transfers = NewTransferService(opts...)
 	r.Income = NewIncomeService(opts...)
+	r.Spending = NewSpendingService(opts...)
+	r.NetWorth = NewNetWorthService(opts...)
+	r.CreditDebt = NewCreditDebtService(opts...)
+	r.Automations = NewAutomationService(opts...)
+	r.Briefs = NewBriefService(opts...)
+	r.Securities = NewSecurityService(opts...)
 	r.Me = NewMeService(opts...)
 	r.PaperTrading = NewPaperTradingService(opts...)
 	r.Webhooks = NewWebhookService(opts...)

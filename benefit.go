@@ -37,6 +37,11 @@ func NewBenefitService(opts ...option.RequestOption) (r BenefitService) {
 }
 
 // Get benefits expiring soon that have remaining value.
+//
+// Send the end user's IANA timezone in the `x-user-timezone` header (for example
+// `America/New_York`). Calendar-day results are resolved in that zone; without it
+// they resolve in UTC, which differs from the user's own day for part of every
+// day.
 func (r *BenefitService) Expiring(ctx context.Context, query BenefitExpiringParams, opts ...option.RequestOption) (res *BenefitExpiringResponse, err error) {
 	opts = slices.Concat(r.options, opts)
 	path := "benefits/expiring"
@@ -45,6 +50,13 @@ func (r *BenefitService) Expiring(ctx context.Context, query BenefitExpiringPara
 }
 
 // Get a summary of the user's card benefit periods with usage and remaining value.
+// A period that has ended on the caller's calendar day is excluded, so the
+// reported totals depend on the timezone.
+//
+// Send the end user's IANA timezone in the `x-user-timezone` header (for example
+// `America/New_York`). Calendar-day results are resolved in that zone; without it
+// they resolve in UTC, which differs from the user's own day for part of every
+// day.
 func (r *BenefitService) Summary(ctx context.Context, opts ...option.RequestOption) (res *BenefitSummaryResponse, err error) {
 	opts = slices.Concat(r.options, opts)
 	path := "benefits/summary"
